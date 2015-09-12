@@ -1,0 +1,100 @@
+<head>
+  <title>Busy Giver</title>
+</head>
+
+<body>
+  <!--navbar code-->
+  <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://busygiver.com">BG</a>
+        </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+              <li><a href="{{publicSettings.blog}}">Blog</a></li>
+          </ul>
+      </div>
+      </div>
+    </nav>
+
+    
+  <div class="header">
+    <h1 class="text-center">Busy Giver</h1>
+    <h1 class="text-center"><small>Give by doing what you would do anyway</small></h1>
+  </div>
+  
+  <!--User choices of experience type and location-->
+  <!--Action Sentence-->
+    <div class="container">
+        <div class="row voffset no-gutters row-centered">
+            <div class="col-md-3 col-centered">
+                I want to
+            </div>
+            <div class="col-md-3 col-centered">
+                <div class="select">
+                  <!--action options-->
+                  <select name="action" class="action-dropdown">
+                    <option value="default">do anything</option>
+                    <option value="Eat">Eat</option>
+                    <option value="Drink">Drink</option>
+                    <option value="Exercise">Exercise</option>
+                    <option value="Party">Party</option>
+                    <option value="Shop">Shop</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-md-3 col-centered">       
+                for good in
+            </div>
+            <div class="col-md-3 col-centered">
+                <!--city options-->
+                <div class="select">
+                    <select name="city" class="city-dropdown">
+                        <option value="default">the world</option>
+                        <option value="Raleigh">Raleigh</option>
+                        <option value="Durham">Durham</option>
+                        <option value="Chapel Hill">Chapel Hill</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  <!--Table of experiences-->
+  <table class="table table-bordered table-striped">
+      <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Date/Time</th>
+            <th>Cause</th>
+          </tr>
+      </thead>
+      <tbody>
+      {{#each experiences}}
+        {{> experience}}
+      {{/each}}
+      </tbody>
+  </table>
+    
+  <div class="footer row-centered voffset">
+    Something missing? Email contact at busygiver dot com or tweet <a href="{{publicSettings.twitter}}">@busygiver</a>.
+  </div>
+</body>
+
+<template name="experience">
+  <tr>
+      <td><a href="{{eventURL}}">{{name}}</a></td>
+    <td><a href="{{placeURL}}">{{place}}</a></td>
+    <td>{{datetime}}</td>
+    <td><a href="{{causeURL}}">{{cause}}</a></td>
+  </tr>
+</template>

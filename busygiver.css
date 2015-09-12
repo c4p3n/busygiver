@@ -1,0 +1,63 @@
+/*Used to adjust vertical space between elements*/
+.voffset { margin-top: 100px;
+           margin-bottom: 100px; }
+
+/* Code from http://julienmelissas.com/no-gutter-column-trick-for-bootstrap/ */
+/* Removes gutters from Bootstrap columns */
+
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*="col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/*Reduces column width on action sentence elements*/
+.col-md-3 { width: 150px;
+            font-size: 24px;
+          }
+
+/* Code from http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-centered-columns */
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    /*text-align:left;*/
+    /* inline-block space fix */
+    /*margin-right:-4px;*/
+}
+
+body {
+    background-color: #F5F5F5;
+    padding-top: 50px
+}
+
+.header {
+    background: linear-gradient(to bottom, #23B248, #4BFF79);
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.header h1 {
+    color: #fff;
+}
+
+.header small {
+    color: #fff;
+}
+
+th {
+    color: #23B248;
+}
+
+.footer {
+    color: #23B248;
+    font-weight: bold;
+}
