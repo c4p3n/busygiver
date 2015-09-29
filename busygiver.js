@@ -40,10 +40,7 @@ if (Meteor.isClient) {
     Template.experience.helpers({
         // convert the ISODate to a user-friendly date format for printing
         friendlyDateTime: function (datetime) {
-            return datetime.toLocaleString("en-us", { month: "long" }) + " " 
-                + datetime.getDate() + " " 
-                + datetime.getFullYear() + " at "
-                + datetime.toLocaleTimeString("en-us", { hour: "2-digit", minute: "2-digit" });
+            return moment(datetime).calendar().toString();
         }
     
     });
