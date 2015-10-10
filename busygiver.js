@@ -3,7 +3,7 @@ Experiences = new Mongo.Collection("experiences");
 
 
 if (Meteor.isClient) {
-    
+                   
     Meteor.subscribe("experiences");
     
     // initialize Session variables
