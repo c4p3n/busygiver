@@ -1,5 +1,22 @@
 // Create database of experiences
-Experiences = new Mongo.Collection("experiences");
+Experiences = new Mongo.Collection("experiences", {
+    transform: function (experience) {
+        if (experience.freq == "once") {
+            experience.datetime = moment(experience.datetime).format("dddd MMM Do, h:mm A");
+            return experience;
+        }
+
+        else if (experience.freq == "weekly") {
+           experience.datetime = nextDate(experience.datetime);
+           return experience;
+        }
+
+        else if (experience.freq == "daily") {
+            experience.datetime = "Always";
+            return experience;
+        }
+    }
+});
 
 
 if (Meteor.isClient) {
@@ -36,14 +53,11 @@ if (Meteor.isClient) {
         }
     });
     
-    // UNUSED
+    // format date
     Template.experience.helpers({
-        // convert the ISODate to a user-friendly date format for printing
-        friendlyDateTime: function (datetime) {
-            return moment(datetime).calendar().toString();
-        }
-    
+        
     });
+    
         
     Template.body.events({
         // monitor change of action dropdown
@@ -65,6 +79,36 @@ if (Meteor.isServer) {
     // publish experiences to client
     Meteor.publish("experiences", function() {
         return Experiences.find({});
+        // sort experiences
+        // return sorted experiences
     });              
   });
 }
+
+
+// helper functions
+
+function nextDate(day) {
+    var eventDay = moment().day(day);
+    // if given day is after today or the same as today, simply return the given day
+    if (eventDay.isAfter(moment(), "day") || eventDay.isSame(moment(), "day"))
+        	return eventDay.format("dddd MMM Do");
+    // else return the next time the event occurs, one week from given day
+    else return eventDay.add(7, "day").format("dddd MMM Do");
+}
+
+ function friendlyDateTime (experience) {
+    if (experience.freq == "once") {
+        experience.datetime = moment(experience.datetime).format("dddd MMM Do, h:mm A");
+    }
+       
+    else if (experience.freq == "weekly") {
+       experience.datetime = nextDate(experience.datetime);
+        // console.log(experience.datetime);
+    }
+        
+    else if (experience.freq == "daily") {
+        experience.datetime = "Always";
+    }
+        
+ }
